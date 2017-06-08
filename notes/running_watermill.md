@@ -1,6 +1,6 @@
 # Running bionode-watermill
 
-## How can I run watermill on my custom pipeline?
+## How can I run bionode-watermill on my custom pipeline?
 
 In order to require bionode-watermill to run a custom made pipeline, one 
 should follow these simple steps:
