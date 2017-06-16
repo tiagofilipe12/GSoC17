@@ -1,0 +1,6 @@
+# Week 3 (15 June to 21 June)
+
+## Summary
+
+Document progress so far...
+Manifest files...

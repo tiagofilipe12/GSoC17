@@ -8,7 +8,7 @@ documentation that I found useful for my GSoC project 2017.
 ## Timeline
 
 - [x] Bionode-watermill testing & mozzila sprint ([30 May to 7 June](https://github.com/bionode/GSoC17/blob/master/Journal/Week_1.md))
-- [x] Bionode-watermill tutorial ([7 June to 14 June]())
+- [x] Bionode-watermill tutorial ([7 June to 14 June](https://github.com/bionode/GSoC17/blob/master/Journal/Week_2.md))
 - [ ] Manifest files
 - [ ] Folder naming according to the definition of tasks
 - [ ] Incremental mode
