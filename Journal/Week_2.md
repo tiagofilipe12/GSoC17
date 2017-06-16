@@ -76,7 +76,7 @@ provided at the end of the tutorial for those that may struggle to understand
  For now, three main things must be improved before attracting users to 
  bionode-watermill:
  
- 1) Make it easier to understand which folders is being created from which 
+ 1) Make it easier to understand which folders are being created from which 
  tasks.
  2) Better explain the input/output in the tutorial (see this [issue](https://github.com/bionode/bionode-watermill-tutorial/issues/2)).
  I.e. explain how glob patterns are fetching files and how can we declare the
