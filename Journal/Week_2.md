@@ -76,12 +76,14 @@ provided at the end of the tutorial for those that may struggle to understand
  For now, three main things must be improved before attracting users to 
  bionode-watermill:
  
- 1) Make it easier to understand which folders are being created from which 
+ - [x] Make it easier to understand which folders are being created from which 
  tasks.
- 2) Better explain the input/output in the tutorial (see this [issue](https://github.com/bionode/bionode-watermill-tutorial/issues/2)).
+ - [ ] Better explain the input/output in the tutorial (see this [issue]
+ (https://github.com/bionode/bionode-watermill-tutorial/issues/2)).
  I.e. explain how glob patterns are fetching files and how can we declare the
   output.
- 3) Arrange a way for a task to take several inputs (lets say several _*.fas_ 
+ - [ ] Arrange a way for a task to take several inputs (lets say several _*
+ .fas_ 
  files) and create a single output, since this is the case of many 
  bioinformatics pipelines. Of course, this should also be documented and 
  further explained. 
