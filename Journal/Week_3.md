@@ -55,22 +55,40 @@ params: "ERR045788"
 For now the output should look like the following example:
 
 ```javascript
-{ folder_name: "/home/tiago/bin/bionode-watermill-tiagofilipe12/bionode-watermill/examples/pipelines/two-mappers/data/9fc99c0", 
-  task_name: "Download reference genome for Streptococcus pneumoniae", 
-  input: null, 
-  output: "*_genomic.fna.gz", 
-  params: {"url":"http://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/007/045/GCF_000007045.1_ASM704v1/GCF_000007045.1_ASM704v1_genomic.fna.gz"} }
-{ folder_name: "/home/tiago/bin/bionode-watermill-tiagofilipe12/bionode-watermill/examples/pipelines/two-mappers", 
-  task_name: "Download SRA ERR045788", 
-  input: null, 
-  output: "**/*.sra", 
-  params: {"db":"sra","accession":"ERR045788"} }
-{ folder_name: "/home/tiago/bin/bionode-watermill-tiagofilipe12/bionode-watermill/examples/pipelines/two-mappers/data/ef7ee47", 
-  task_name: "fastq-dump **/*.sra", 
-  input: "**/*.sra", 
-  output: ["*_1.fastq.gz","*_2.fastq.gz"], 
-  params: {} }
+{
+  "folderName": "/home/tiago/bin/bionode-watermill-tiagofilipe12/bionode-watermill/examples/pipelines/two-mappers/data/9fc99c0",
+  "taskName": "Download reference genome for Streptococcus pneumoniae",
+  "input": null,
+  "output": "*_genomic.fna.gz",
+  "params": {
+    "url": "http://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/007/045/GCF_000007045.1_ASM704v1/GCF_000007045.1_ASM704v1_genomic.fna.gz"
+  }
+}
+{
+  "folderName": "/home/tiago/bin/bionode-watermill-tiagofilipe12/bionode-watermill/examples/pipelines/two-mappers",
+  "taskName": "Download SRA ERR045788",
+  "input": null,
+  "output": "**/*.sra",
+  "params": {
+    "db": "sra",
+    "accession": "ERR045788"
+  }
+}
+{
+  "folderName": "/home/tiago/bin/bionode-watermill-tiagofilipe12/bionode-watermill/examples/pipelines/two-mappers/data/ef7ee47",
+  "taskName": "fastq-dump **/*.sra",
+  "input": "**/*.sra",
+  "output": [
+    "*_1.fastq.gz",
+    "*_2.fastq.gz"
+  ],
+  "params": {}
+}
+
 ```
+
+So, the output is NDJSON like file, following the phylosophy of other 
+`bionode` modules.
     
   
 ## What can be improved?
