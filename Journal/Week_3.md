@@ -1,4 +1,4 @@
-# Week 3 (15 June to 21 June)
+# Week 3 (15 June to 22 June)
 
 - [Summary](#summary)
 - [Summary_log.txt](#summary-log-txt)
@@ -96,3 +96,8 @@ So, the output is NDJSON like file, following the phylosophy of other
 - [ ] We need to check bionode-ncbi behavior within bionode-watermill since its 
 outputs are being generated outside `./data`, the expected main output 
 directory.
+- [ ] Output should include the actual files that are the input and output 
+(resolvedInput and resolvedOutput).
+- [ ] It should be added the 'command' that is run by each task.
+- [ ] Also it should be improved the visualization of which tasks run in 
+parallel or one after another. What are the relationships between tasks.
