@@ -49,6 +49,10 @@ basically by creating a new object `graphsonObj` in which the previous `obj`
  `graphsonObj.graph.vertices.uid` under `graphsonObj`.
  * [ ] start creating the `obj` in a different manner, maybe without `graph.js`?
  
+Also current DAG implementation renders something odd with task `uid` often 
+being replaced by task `params`. Then, this is currently rendering wrong 
+format of graphson object.
+ 
 ## Notes on manifest file
 
 With the graphson object generated, it might be easy to pass more information
