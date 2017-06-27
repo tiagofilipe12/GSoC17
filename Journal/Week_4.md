@@ -48,3 +48,11 @@ basically by creating a new object `graphsonObj` in which the previous `obj`
  * [ ] add a statement to check if id object already exist in all 
  `graphsonObj.graph.vertices.uid` under `graphsonObj`.
  * [ ] start creating the `obj` in a different manner, maybe without `graph.js`?
+ 
+## Notes on manifest file
+
+With the graphson object generated, it might be easy to pass more information
+ into the graph object and them use it to output a text file something like 
+ exemplified above. For instance, we can pass task params, input, and so on 
+ to each vertex and then use it to output not only the graph but also a 
+ better manifest file.
