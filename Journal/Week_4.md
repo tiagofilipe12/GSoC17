@@ -1,5 +1,12 @@
 # Week 4 (22 June to 28 June)
 
+- [Summary](#summary)
+- [Progress](#progress)
+    - [Using graph object from graph.js](#using-graph-object-from-graphjs)
+    - [Needing improvements](#needing-improvements)
+- [Notes on manifest file](#notes-on-manifest-file)
+
+
 ## Summary
 
 This week was dedicated to the improvement of workflow representation. Output
