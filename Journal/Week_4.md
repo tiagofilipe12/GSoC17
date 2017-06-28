@@ -138,6 +138,9 @@ This will render an object like this:
 passed to `graphsonObj.graph.vertices.outputs`. This is problematic when 
 `params.output` is a list. Same may be valid for `input` and `output` (but 
 needs testing).
+* As it is now, graph object is generated within `jsonifyGraph` and this 
+render several instances of `graphsonObj` and in fact we only need one to 
+output the graph as a visualization or even parse it to some text output.
 
 ## Notes on manifest file
 
