@@ -45,9 +45,10 @@ basically by creating a new object `graphsonObj` in which the previous `obj`
  since in some cases with fork it seems to be rendering duplicated vertices.
  Ideas to solve this issue:
  
- * [ ] add a statement to check if id object already exist in all 
+ * [ ] :no_entry: add a statement to check if id object already exist in all 
  `graphsonObj.graph.vertices.uid` under `graphsonObj`.
- * [ ] start creating the `obj` in a different manner, maybe without `graph.js`?
+ * [ ] :no_entry: start creating the `obj` in a different manner, maybe 
+ without `graph.js`?
  * [x] use [graph.js](https://www.npmjs.com/package/graph.js) API.
  
 Also current DAG implementation renders something odd with task `uid` often 
