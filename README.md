@@ -16,4 +16,5 @@ documentation that I found useful for my GSoC project 2017.
 - [ ] Folder naming according to the definition of tasks
 - [ ] Incremental mode
 - [ ] Implement streams
+- [ ] Benchmark bionode-watermill comparison ([check this issue](https://github.com/bionode/GSoC17/issues/3))
 - [ ] ...
