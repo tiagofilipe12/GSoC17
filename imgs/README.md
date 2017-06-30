@@ -2,11 +2,15 @@
 
 ## Previous instance of the graph
 
-* <span style="color:blue">Tasks vertices</span>
-* <span style="color:orange">Fork/Junction <b>extra</b> vertices</span>
-*  <span style="color:green">Junction vertices</span>
+![alt text](https://github.com/bionode/GSoC17/blob/master/imgs/previous_graph.png "previous graph")
+
+* <font color="blue">Tasks vertices</font>
+* <font color="orange">Fork/Junction <b>extra</b> vertices</font>
+* <font color="green">Junction vertices</font>
 
 ## New instance of graph
 
-* <span style="color:blue">Tasks vertices</span>
-* <span style="color:orange">Junction vertices</span>
+![alt text](https://github.com/bionode/GSoC17/blob/master/imgs/new_graph.png "previous graph")
+
+* <font color="blue">Tasks vertices</font>
+* <font color="orange">Junction vertices</font>
