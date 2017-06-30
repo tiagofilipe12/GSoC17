@@ -11,7 +11,8 @@ documentation that I found useful for my GSoC project 2017.
 - [x] Bionode-watermill tutorial ([7 June to 14 June](https://github.com/bionode/GSoC17/blob/master/Journal/Week_2.md))
 - [x] Basic Manifest files ([15 June to 22 June](https://github.com/bionode/GSoC17/blob/master/Journal/Week_3.md))
 - [ ] Manifest file improvement (this might be solved with DAG visualization)
-- [ ] DAG visualization ([23 June to 28 June](https://github.com/bionode/GSoC17/blob/master/Journal/Week_4.md))
+- [x] DAG visualization ([23 June to 28 June](https://github.com/bionode/GSoC17/blob/master/Journal/Week_4.md))
+- [ ] Improve DAG visualization as described [here](https://github.com/bionode/GSoC17/blob/master/Journal/Week_5.md#todo).
 - [ ] Real-time graph visualization
 - [ ] Folder naming according to the definition of tasks
 - [ ] Incremental mode
