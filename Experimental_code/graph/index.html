@@ -29,7 +29,6 @@ var simulation = d3.forceSimulation()
     .force("center", d3.forceCenter(width / 2, height / 2));
 
 d3.json("graphson.json", function(error, graph) {
-  // here you can edit to load a new json
   if (error) throw error;
 
   //checks if output is from a junction or join and append a variable to
@@ -45,11 +44,11 @@ d3.json("graphson.json", function(error, graph) {
         graph.graph.vertices[obj]["kind"] = 'junction'
       }
     } else {
-      console.log(graph.graph.vertices[obj])
+      console.log(graph.graph.vertices[obj])    // useful for debugging
     }
   }
   //if (graph.graph.edges.values.output.startWith
-  console.log(graph.graph.vertices)
+  //console.log(graph.graph.vertices)
   var link = svg.append("g")
       .attr("class", "links")
     .selectAll("line")
