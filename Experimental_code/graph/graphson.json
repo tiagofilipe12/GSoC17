@@ -6,27 +6,41 @@
         "_id": "9fc99c06ad00e77f230bb01ec37d640f078b1187addaa82504b0aa464fcd2fb1",
         "_type": "vertex",
         "values": {
+          "type": "collection/add-output",
           "taskName": "Download reference genome for Streptococcus pneumoniae",
-          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/9fc99c0/GCF_000007045.1_ASM704v1_genomic.fna.gz"
+          "input": null,
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/9fc99c0/GCF_000007045.1_ASM704v1_genomic.fna.gz",
+          "params": {
+            "url": "http://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/007/045/GCF_000007045.1_ASM704v1/GCF_000007045.1_ASM704v1_genomic.fna.gz"
+          }
         }
       },
       {
         "_id": "4b2c185cd59fb67a741dee59dbb25fc127f171fc7a55a9d4882e998365cf6090",
         "_type": "vertex",
         "values": {
+          "type": "collection/add-output",
           "taskName": "Download SRA ERR045788",
-          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/113055/ERR045788.sra"
+          "input": null,
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/113055/ERR045788.sra",
+          "params": {
+            "db": "sra",
+            "accession": "ERR045788"
+          }
         }
       },
       {
         "_id": "ef7ee47b6ced0cd7cc1c843ea5c5e81819dde37ee943e57b236e4faf3503570c",
         "_type": "vertex",
         "values": {
+          "type": "collection/add-output",
           "taskName": "fastq-dump **/*.sra",
+          "input": "**/*.sra",
           "output": [
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/ef7ee47/ERR045788_1.fastq.gz",
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/ef7ee47/ERR045788_2.fastq.gz"
-          ]
+          ],
+          "params": {}
         }
       },
       {
@@ -34,41 +48,71 @@
         "_type": "vertex",
         "values": [
           {
+            "type": "collection/add-output",
             "taskName": "Download reference genome for Streptococcus pneumoniae",
-            "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/9fc99c0/GCF_000007045.1_ASM704v1_genomic.fna.gz"
+            "input": null,
+            "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/9fc99c0/GCF_000007045.1_ASM704v1_genomic.fna.gz",
+            "params": {
+              "url": "http://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/007/045/GCF_000007045.1_ASM704v1/GCF_000007045.1_ASM704v1_genomic.fna.gz"
+            }
           },
           {
+            "type": "collection/add-output",
             "taskName": "Download SRA ERR045788",
-            "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/113055/ERR045788.sra"
+            "input": null,
+            "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/113055/ERR045788.sra",
+            "params": {
+              "db": "sra",
+              "accession": "ERR045788"
+            }
           },
           {
+            "type": "collection/add-output",
             "taskName": "fastq-dump **/*.sra",
+            "input": "**/*.sra",
             "output": [
               "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/ef7ee47/ERR045788_1.fastq.gz",
               "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/ef7ee47/ERR045788_2.fastq.gz"
-            ]
+            ],
+            "params": {}
           }
         ]
+      },
+      {
+        "_id": "9fd7ed17b3d78add681834ea8c9851951339ff18cee980be710195f76bb561db",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "taskName": "generating .fai for reference",
+          "input": "*_genomic.fna.gz",
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/9fd7ed1/reference.fasta.fai",
+          "params": {}
+        }
       },
       {
         "_id": "78fe68b428e60953c66a2788af83b7997183755e6a3670c110467c0bc3090e69",
         "_type": "vertex",
         "values": {
+          "type": "collection/add-output",
           "taskName": "bwa index *_genomic.fna.gz",
+          "input": "*_genomic.fna.gz",
           "output": [
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/78fe68b/GCF_000007045.1_ASM704v1_genomic.fna.gz.amb",
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/78fe68b/GCF_000007045.1_ASM704v1_genomic.fna.gz.ann",
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/78fe68b/GCF_000007045.1_ASM704v1_genomic.fna.gz.bwt",
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/78fe68b/GCF_000007045.1_ASM704v1_genomic.fna.gz.pac",
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/78fe68b/GCF_000007045.1_ASM704v1_genomic.fna.gz.sa"
-          ]
+          ],
+          "params": {}
         }
       },
       {
         "_id": "47f51ab56a1c2b3dbf9e2a01e5066bc6851b1599605147f8af0eccf2f6467533",
         "_type": "vertex",
         "values": {
+          "type": "collection/add-output",
           "taskName": "bowtie2-build -q uncompressed.fa bowtie_index",
+          "input": "*_genomic.fna.gz",
           "output": [
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/47f51ab/bowtie_index.1.bt2",
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/47f51ab/bowtie_index.2.bt2",
@@ -76,23 +120,163 @@
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/47f51ab/bowtie_index.4.bt2",
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/47f51ab/bowtie_index.rev.1.bt2",
             "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/47f51ab/bowtie_index.rev.2.bt2"
-          ]
+          ],
+          "params": {
+            "output": "bowtie_index"
+          }
         }
       },
       {
         "_id": "669e916cac8967fb0db6037c0b09d4728dba99403be06759bdda7a33747e89a1",
         "_type": "vertex",
         "values": {
+          "type": "collection/add-output",
           "taskName": "Mapping with bwa...",
-          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/669e916/bwa_output.sam"
+          "input": {
+            "reference": "*_genomic.fna.gz",
+            "reads": [
+              "*_1.fastq.gz",
+              "*_2.fastq.gz"
+            ],
+            "indexFiles": [
+              "*_genomic.fna.gz.amb",
+              "*_genomic.fna.gz.ann",
+              "*_genomic.fna.gz.bwt",
+              "*_genomic.fna.gz.pac",
+              "*_genomic.fna.gz.sa"
+            ]
+          },
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/669e916/bwa_output.sam",
+          "params": {
+            "output": "bwa_output.sam"
+          }
         }
       },
       {
         "_id": "563845527109aa286c94b7d6d9e47711f15cc8f19526144eeaa3bcb079af1c12",
         "_type": "vertex",
         "values": {
+          "type": "collection/add-output",
           "taskName": "Mapping with bowtie2...",
-          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/5638455/bowtie2_output.sam"
+          "input": {
+            "reference": "*_genomic.fna.gz",
+            "reads": [
+              "*_1.fastq.gz",
+              "*_2.fastq.gz"
+            ],
+            "indexFiles": [
+              "bowtie_index.1.bt2",
+              "bowtie_index.2.bt2",
+              "bowtie_index.3.bt2",
+              "bowtie_index.4.bt2",
+              "bowtie_index.rev.1.bt2",
+              "bowtie_index.rev.2.bt2"
+            ]
+          },
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/5638455/bowtie2_output.sam",
+          "params": {
+            "output": "bowtie2_output.sam"
+          }
+        }
+      },
+      {
+        "_id": "6c19b724830bab1e1980980ff9037bf3068d84de4c0cf5a9f4dafb900f381d36",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "taskName": "Samtools View",
+          "input": {
+            "samfile": "*.sam",
+            "faidxfile": "*.fasta.fai"
+          },
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/6c19b72/bwa_output.bam",
+          "params": {}
+        }
+      },
+      {
+        "_id": "25aa4eb5024cffab963558ba3d3a788143b5d3f3e7fac769aa3532abfe82788c",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "taskName": "Samtools View",
+          "input": {
+            "samfile": "*.sam",
+            "faidxfile": "*.fasta.fai"
+          },
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/25aa4eb/bowtie2_output.bam",
+          "params": {}
+        }
+      },
+      {
+        "_id": "3cdc54eca09d3027a8472ff6e7a5c419b79fb790603507144b9fc6bb198d9699",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "taskName": "Unnamed Task",
+          "input": "*.bam",
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/3cdc54e/bwa_output.sorted.bam",
+          "params": {}
+        }
+      },
+      {
+        "_id": "5203e114b509951354589f9d53d8616127a9e7cf3e6ffc90f162bc038d2d4ddb",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "taskName": "Unnamed Task",
+          "input": "*.bam",
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/5203e11/bowtie2_output.sorted.bam",
+          "params": {}
+        }
+      },
+      {
+        "_id": "8824b354260a93ff6e2088e01c5b08fa2305bc86a4f647a402e37b3eddba038e",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "taskName": "Unnamed Task",
+          "input": "*.sorted.bam",
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/8824b35/bwa_output.sorted.bam.bai",
+          "params": {}
+        }
+      },
+      {
+        "_id": "98b02e2d985539d567749352a0bf99415e496c21f1ddc676f3e4249e7a28b4e0",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "taskName": "Unnamed Task",
+          "input": "*.sorted.bam",
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/98b02e2/bowtie2_output.sorted.bam.bai",
+          "params": {}
+        }
+      },
+      {
+        "_id": "23f192cbcaefa55ff534cae33dbac2f5f0ced0266818ee7ef723ec8806cd6ed5",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "taskName": "Unnamed Task",
+          "input": {
+            "indexfile": "*.bai",
+            "sortedfile": "*.sorted.bam"
+          },
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/23f192c/bwa_output_depth.txt",
+          "params": {}
+        }
+      },
+      {
+        "_id": "0bf83970004c213db905e0be0fe5c09ceebad5f3c20222a85f14f5ad1fbcc1cf",
+        "_type": "vertex",
+        "values": {
+          "type": "collection/add-output",
+          "taskName": "Unnamed Task",
+          "input": {
+            "indexfile": "*.bai",
+            "sortedfile": "*.sorted.bam"
+          },
+          "output": "/home/tiago/bin/bionode-watermill/examples/pipelines/two-mappers/data/0bf8397/bowtie2_output_depth.txt",
+          "params": {}
         }
       }
     ],
@@ -114,11 +298,16 @@
       },
       {
         "source": "d5cea15ff5fb2b3c9e1405a67327fe16265a3c576deeadcbc04d90b8406094c7",
+        "target": "9fd7ed17b3d78add681834ea8c9851951339ff18cee980be710195f76bb561db",
+        "_type": "edge"
+      },
+      {
+        "source": "9fd7ed17b3d78add681834ea8c9851951339ff18cee980be710195f76bb561db",
         "target": "78fe68b428e60953c66a2788af83b7997183755e6a3670c110467c0bc3090e69",
         "_type": "edge"
       },
       {
-        "source": "d5cea15ff5fb2b3c9e1405a67327fe16265a3c576deeadcbc04d90b8406094c7",
+        "source": "9fd7ed17b3d78add681834ea8c9851951339ff18cee980be710195f76bb561db",
         "target": "47f51ab56a1c2b3dbf9e2a01e5066bc6851b1599605147f8af0eccf2f6467533",
         "_type": "edge"
       },
@@ -130,6 +319,46 @@
       {
         "source": "47f51ab56a1c2b3dbf9e2a01e5066bc6851b1599605147f8af0eccf2f6467533",
         "target": "563845527109aa286c94b7d6d9e47711f15cc8f19526144eeaa3bcb079af1c12",
+        "_type": "edge"
+      },
+      {
+        "source": "669e916cac8967fb0db6037c0b09d4728dba99403be06759bdda7a33747e89a1",
+        "target": "6c19b724830bab1e1980980ff9037bf3068d84de4c0cf5a9f4dafb900f381d36",
+        "_type": "edge"
+      },
+      {
+        "source": "563845527109aa286c94b7d6d9e47711f15cc8f19526144eeaa3bcb079af1c12",
+        "target": "25aa4eb5024cffab963558ba3d3a788143b5d3f3e7fac769aa3532abfe82788c",
+        "_type": "edge"
+      },
+      {
+        "source": "6c19b724830bab1e1980980ff9037bf3068d84de4c0cf5a9f4dafb900f381d36",
+        "target": "3cdc54eca09d3027a8472ff6e7a5c419b79fb790603507144b9fc6bb198d9699",
+        "_type": "edge"
+      },
+      {
+        "source": "25aa4eb5024cffab963558ba3d3a788143b5d3f3e7fac769aa3532abfe82788c",
+        "target": "5203e114b509951354589f9d53d8616127a9e7cf3e6ffc90f162bc038d2d4ddb",
+        "_type": "edge"
+      },
+      {
+        "source": "3cdc54eca09d3027a8472ff6e7a5c419b79fb790603507144b9fc6bb198d9699",
+        "target": "8824b354260a93ff6e2088e01c5b08fa2305bc86a4f647a402e37b3eddba038e",
+        "_type": "edge"
+      },
+      {
+        "source": "5203e114b509951354589f9d53d8616127a9e7cf3e6ffc90f162bc038d2d4ddb",
+        "target": "98b02e2d985539d567749352a0bf99415e496c21f1ddc676f3e4249e7a28b4e0",
+        "_type": "edge"
+      },
+      {
+        "source": "8824b354260a93ff6e2088e01c5b08fa2305bc86a4f647a402e37b3eddba038e",
+        "target": "23f192cbcaefa55ff534cae33dbac2f5f0ced0266818ee7ef723ec8806cd6ed5",
+        "_type": "edge"
+      },
+      {
+        "source": "98b02e2d985539d567749352a0bf99415e496c21f1ddc676f3e4249e7a28b4e0",
+        "target": "0bf83970004c213db905e0be0fe5c09ceebad5f3c20222a85f14f5ad1fbcc1cf",
         "_type": "edge"
       }
     ]

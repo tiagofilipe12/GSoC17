@@ -98,9 +98,104 @@ Also, previous graphson object can be checked [here](https://github.com/bionode/
 with the odd vertices being created like [this one](https://github.com/bionode/GSoC17/blob/master/Experimental_code/graph/prev_graphson.json#L14).
 New graphson object can be checked [here](https://github.com/bionode/GSoC17/blob/master/Experimental_code/graph/graphson.json).
 
-## TODO
+## TODO or solved...
 
-* [ ] Pass more information to graphson object based on the uid of the tasks
-* [ ] Add real-time visualization to graphson object rather than outputting it
+* [x] Pass more information to graphson object based on the uid of the tasks
+
+**Solution:**
+This was achieved by using the taskState object within 
+[collections.js](https://github.com/bionode/bionode-watermill/blob/master/lib/reducers/collection.js).
+I had to call `input`  and `name` associated to the reducer of taskState and 
+pass it to `graphsonObj`. However, `input` is not really what would be ideal to
+ pass to this object (either for output file or for the graph visualization),
+  because `input` returns the pattern passed to task rather than the 
+  `resolvedInput` which stores the actual input provided in each task 
+  (similarly to `resolvedOutput`).
+
+* [x] Add real-time visualization to graphson object rather than outputting it
  to file or stdout.
-* [ ] Work on manifest file based on this object.
+ 
+ **Solution:**
+ Real-time visualization was implemented using the d3 graph visualization. 
+ Basically, the graph is updated on every instance of `jsonifyGraph` in
+ [collections.js](https://github.com/bionode/bionode-watermill/blob/master/lib/reducers/collection.js),
+ through socket.io, which outputs each time `jsonifyGraph` object is updated.
+  In order to do that, I had to give an [index.html](https://github.com/bionode/bionode-watermill/blob/viz/viz/index.html) 
+  to render the graph visualization and start the server in [collection.js](https://github.com/bionode/bionode-watermill/blob/viz/lib/reducers/collection.js#L23-L28).
+ After initiating the server is just a matter of passing the `graphsonObj` to
+  the `index.html`. In the `index.html` (client-side) I had to check if 
+  vertices are from a task or from a junction since this should render 
+  different labels and vertex colors.
+  
+  ```javascript
+  for (var obj in graph.vertices) {
+    // checks if vertex is coming from a junction or a task
+    // if object comes from a task it will have an access for output
+    // otherwise it will have more objects inside each one with its own output
+    graph.vertices[obj]["kind"] = graph.vertices[obj].values.type !==
+    undefined ? 'task' : 'junction'
+    // this is only undefined because graph.vertices.values.type returns an
+    // array rather than an object where type is available.
+  }
+```
+
+Then, for color I used d3 function:
+
+```javascript
+var node = svg.append("g")
+  // ... some more code
+  .attr("fill", function (d) { return color(d.kind) })
+```
+
+A similar check was implemented for label display:
+
+```javascript
+    node.append("title")
+      .text(function (d) {
+        miniUid = d.values.type !== undefined ?
+          `./data/${d._id.substring(0, 7)}` : 'n/a'
+        return `- uid: ${d._id}
+- Kind: ${d.kind}
+- Task name: ${d.values.taskName}
+- output(s): ${d.values.output}
+- Input pattern: ${JSON.stringify(d.values.input)}
+- params: ${JSON.stringify(d.values.params)}
+- Output folder: ${miniUid}` })
+//this will not handle properly bionode-ncbi output folders
+```
+
+An important note though is that this type of parsing of output folder will 
+not solve the problem with bionode-ncbi rendering output folders outside main
+ output folder of bionode-watermill (`./data`). This code can be checked 
+ [here](https://github.com/bionode/bionode-watermill/blob/viz/viz/index.html#L49-L89).
+ 
+#### Drawbacks
+ 
+ With this type of implementation each time bionode-watermill executes a 
+ script the ending of the script would get stucked because the server-client 
+ connection is still open in the end. 
+ 
+ **Bug**: During the first run session is closed at the end of the script. 
+ However, if we rerun the script (while everything is already resolved, it 
+ will retrieve keep the connection between the server and client open).
+ 
+ Thus, at this stage I think the best way to solve this issue would be to 
+ implement a CLI 
+ that specifically handles this.
+
+* [x] Work on manifest file based on this object.
+
+ **Solution:**
+ Manifest file is no more than the `graphson.json` being saved on every 
+ instance of bionode-watermill. It needs to have the **`resolvedInput`** as 
+ well 
+ as the **command** executed by shell (when something is passed to shell).
+ Sample graphson.json can be seen [here](https://github.com/bionode/GSoC17/blob/master/Experimental_code/graph/graphson.json).
+ 
+## Needing improvements
+ 
+* [ ] bionode-ncbi output folder.
+* [ ] replace d3 graph visualization with some more appropriate model.
+* [ ] control graph using a CLI, rather than being executed by default.
+ 
+ 
