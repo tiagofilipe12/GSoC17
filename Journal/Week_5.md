@@ -126,6 +126,10 @@ pass it to `graphsonObj`. However, `input` is not really what would be ideal to
  Basically, the graph is updated on every instance of `jsonifyGraph` in
  [collections.js](https://github.com/bionode/bionode-watermill/blob/master/lib/reducers/collection.js),
  through socket.io, which outputs each time `jsonifyGraph` object is updated.
+ 
+ Note: this now requires the user to refresh `localhost:8084` to visualize 
+ the updated pipeline workflow.
+ 
   In order to do that, I had to give an [index.html](https://github.com/bionode/bionode-watermill/blob/viz/viz/index.html) 
   to render the graph visualization and start the server in [collection.js](https://github.com/bionode/bionode-watermill/blob/viz/lib/reducers/collection.js#L23-L28).
  After initiating the server is just a matter of passing the `graphsonObj` to
