@@ -1,5 +1,11 @@
 # Week 5 (29 June to 05 July)
 
+- [Summary](#summary)
+- [Progress](#progress)
+- [TODO or solved...](#todo-or-solved)
+    - [Drawbacks](#drawbacks)
+- [Needing improvements](#needing-improvements)
+
 ## Summary
 
 This week's main goal was to construct a graph object suitable for 
@@ -189,7 +195,8 @@ not solve the problem with bionode-ncbi rendering output folders outside main
  Manifest file is no more than the `graphson.json` being saved on every 
  instance of bionode-watermill. It needs to have the **`resolvedInput`** as 
  well 
- as the **command** executed by shell (when something is passed to shell).
+ as the **command** (`operationString`) executed by shell (when something is 
+ passed to shell).
  Sample graphson.json can be seen [here](https://github.com/bionode/GSoC17/blob/master/Experimental_code/graph/graphson.json).
  
 ## Needing improvements
