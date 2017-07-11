@@ -74,9 +74,35 @@ to re-work the `pipeline.js` and `pipeline_lazy.js`
 script to fix 
 this.
 
+### resolvedInput
+ 
+In order to display in graphson object and visualization the input(s) provided 
+to each task, the task itself must be ran for the first time, otherwise it 
+will not have `resolvedInput` (because watermill checks if `resolvedOutput` 
+already exists for a given task). So, `resolvedInput` was added to graphson by 
+using its definition in `taskState` (check it [here](https://github.com/bionode/bionode-watermill/blob/master/lib/reducers/collection.js#L200)
+and [here](https://github.com/bionode/bionode-watermill/blob/master/lib/reducers/collection.js#L125).
+
+
+### operationString
+
+Operation or command being passed to shell (at least this is the most 
+informative instance for this...) is a quite similar to `resovledInput` in 
+the sense that this will only be available in the first run of a given 
+pipeline. Otherwise `resolvedOutput` will be read by watermill and render 
+`operationString`  as `undefined`. For that, first add to fix a bug that was 
+pushing to the `operationString` the function `operationCreator` rather than 
+the string itself (check [this](https://github.com/bionode/bionode-watermill/commit/2be0185a1726d314892550a517a0853f90c20abc)).
+Until now, there were no operationString instance in default task state, thus
+ it was added to default task state and then a new reducer case was added in 
+ order to pass this action to the next state and make it available in 
+ `taskState` used by ` graphson`. This [commit](https://github.com/bionode/bionode-watermill/commit/f56a1abaf636ca6e4c80e4d35898e92cedef4096) 
+ might help to better comprehend the progress done here.
+
+
 ## TODO
 
-Future implementation of logger must be passed through a CLI as described 
+* [ ] Future implementation of logger must be passed through a CLI as described 
 [here](https://github.com/bionode/bionode-watermill/issues/31). For now, this
 is a quick fix for debugging purposes. Later, when we implement a CLI we have
  to have this into account.
