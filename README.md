@@ -29,7 +29,7 @@ documentation that I found useful for my GSoC project 2017.
 able to import the task and use it, multiple pipelines)
 * Object pipeline definition (try to change the pipeline from a promise to an
  object.. and ability to import the pipeline into another pipeline, know dag 
- shape ahead of running). ***
+ shape ahead of running).
 * CWL
 * use cases for streaming tasks (a | b | c), saving stodut to files, etc
 * Human input in certain tasks
