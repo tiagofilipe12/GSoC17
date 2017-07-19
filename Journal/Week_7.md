@@ -1,4 +1,4 @@
-# Week 6 (13 July to 20 July)
+# Week 7 (13 July to 20 July)
 
 ## Summary
 
