@@ -1,7 +1,20 @@
 # Week 7 (13 July to 20 July)
 
+- [Summary](#summary)
+- [Progress](#progress)
+    - [Optional tasks](#optional-tasks)
+        - [The comment workaround](#the-comment-workaround)
+        - [Using nodejs process.argv](using-nodejs-process-argv)
+    - [Execute pipelines inside another pipeline as a task](#execute-pipelines-inside-another-pipeline-as-a-task)
+- [Removal of redundant code](#removal-of-redundant-code)
+
 ## Summary
 
+This week was dedicated to the analysis of DAG and to explore solutions for 
+problems that arise from previous conceptual discussions, such as: optional 
+tasks, multiple input handling and the execution of a pipeline inside another
+ pipeline.
+ 
 ## Progress
 
 ### Optional tasks
@@ -76,3 +89,47 @@ if (process.argv[2] === 'optional') {
   pipeline2()
 }
 ```
+
+### Execute pipelines inside another pipeline as a task
+
+Another solution for this would be to execute a pipeline inside another 
+pipeline. For instance imagine you want to execute `alterativePipeline.js` 
+after `mainPipeline.js`.
+
+`mainPipeline.js`:
+```javascript
+const pipeline = join(task1, task2)
+```
+
+`alternativePipeline.js`:
+```javascript
+const pipeline = join(mainPipelineTask, task3, task4)
+```
+
+Here `mainPipelineTask` is in fact a task that executes `node mainPipeline.js`
+
+**Note**: For this `mainPipeline.js` must be in the same folder as 
+`alternativePipeline.js`, otherwise bionode-watermill will search for folders 
+that do not exist because they are in the folder of ` mainPipeline.js`.
+
+** However this didn't work as expected since I could not invoke a task from 
+other pipeline into another task in main pipeline simply by executing `node 
+pipeline.js` within a task.**
+
+However, this should work because it is just the execution of a js script 
+using node in shell to run it. And so, this issue requires further discussion
+ to check what is happening...
+ 
+ Nonetheless, pipelines should ideally be imported into another pipelines 
+ instead of executing them in a main pipeline task, because the latter won't 
+ allow for future implementation of full DAG visualization and instead will 
+ render a node for the task that executes another watermill pipeline.
+
+## Removal of redundant code
+
+Also there existed two instances of `defaultTask` definition. One in 
+`lib/reducers/task.js` that was being used only in this instance and another 
+one in `lib/constants/default-task-state.js` that is used by orchestrators to
+ handle `task` state. So, in order to avoid this duplication of code the 
+ instances of `defaultTask` within `lib/reducers/task.js` was replaced with 
+ an import from `lib/constants/default-task-state.js`.

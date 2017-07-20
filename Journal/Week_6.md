@@ -1,5 +1,11 @@
 # Week 6 (6 July to 12 July)
 
+- [Summary](#summary)
+- [Progress](#progress)
+    - [resolvedInput](#resolvedinput)
+    - [operationString](#operationstring)
+- [TODO](#todo)
+
 ## Summary
 
 This week we set the goals to finish the pending issues with graph 
