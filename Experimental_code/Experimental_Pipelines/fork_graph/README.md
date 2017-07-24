@@ -1,5 +1,5 @@
-## join_graph.js
+## fork_graph.js
 
-This is a illustration of the graph retrieved by join.
+This is a illustration of the graph retrieved by fork.
 
-![alt text](https://github.com/bionode/GSoC17/blob/master/imgs/new.png "new graph")
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_graph/fork_graph.png "fork graph")
