@@ -25,3 +25,7 @@ and added it to the end of another pipeline as a normal task.
 Pipeline executes properly, a new vertex and edge is created but then it 
 generates no output folder as well as information from the tasks being 
 executed within `test.js` (this latter is an expected behavior).
+
+Export/import is definitely the way to go but there is still work to do 
+before this being more user-friendly and intuitive. For instance, by converting 
+the pipeline into an object rather than a set of promises.
