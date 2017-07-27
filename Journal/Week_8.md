@@ -3,7 +3,7 @@
 - [Summary](#summary)
 - [Progress](#progress)
     - [Execute pipelines inside another pipeline as a task (cont...)](#execute-pipelines-inside-another-pipeline-as-a-task-cont)
-    - [Graph arrows](#graph arrows)
+    - [Graph arrows](#graph-arrows)
     - [Simple DAG examples](#simple-dag-examples)
         - [join](#join)
         - [junction](#junction)
