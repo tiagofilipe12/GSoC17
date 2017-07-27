@@ -2,6 +2,9 @@
 
 ## Summary
 
+This week was fully dedicated to the characterization of DAG and test of 
+orchestrators in diverse cases
+
 ## Progress
 
 ### Execute pipelines inside another pipeline as a task (cont...)
@@ -51,4 +54,38 @@ coming from. Right now edges are being outputted to `graphson.json` according
   interested, you can check the pipeline
   [here](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/join_only/join_only.js).
   
+  ### Simple DAG examples
+  
+  #### join
+  
+  Join is in fact a pipe that waits for previous task to finish before 
+  executing the next one. Check [this](https://github.com/bionode/GSoC17/tree/master/Experimental_code/Experimental_Pipelines/join_graph)!
+  
+  #### junction
+  
+  junction on the other hand can be seen as a parallelization of tasks that 
+  waits for all tasks inside junction to finish before proceeding with the 
+  pipeline. Check [this](https://github.com/bionode/GSoC17/tree/master/Experimental_code/Experimental_Pipelines/junction_graph)!
+  
+  #### fork
+  
+  fork is somewhat similar to junction in the sense that both split the 
+  pipeline into two or more branches, but the end result of them is very 
+  different. While junction results in a final tree with one leaf, fork 
+  splits the pipeline into two or more branches that end in as many leaves as
+   the number of branches. Check [this](https://github.com/bionode/GSoC17/tree/master/Experimental_code/Experimental_Pipelines/fork_graph)!
+  
+  Also, with fork tasks proceed regardless of any branch being finished or 
+  not, thus some branches may finish before others since they don't depend on
+   each other.
+  
+  This, in fact, has profound effects in pipeline design. That should be well 
+  documented, because after fork we cannot merge the results coming from 
+  different branches.
+  
+  ## TODO
+  
+  * [ ] Test junction inside a junction - other solution
+  * [ ] Test fork inside a fork
+  * [ ] Test Junction inside a fork
   
