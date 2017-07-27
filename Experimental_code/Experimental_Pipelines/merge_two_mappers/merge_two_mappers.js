@@ -138,12 +138,12 @@ const samtoolsFaidx = task({
 )
 
 const samtoolsView = task({
+  name: 'Samtools View',
   input: {
     samfile: '*.sam',
     faidxfile: '*.fasta.fai'
   },
-  output: '*.bam',
-  name: 'Samtools View'
+  output: '*.bam'
 }, ({ input }) => {
   const outputfile = input.samfile.slice(0,-3) + 'bam'  /* use same name as
    input but replace the final extension to the string to bam. In this case
