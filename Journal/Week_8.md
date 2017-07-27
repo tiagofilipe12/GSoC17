@@ -1,9 +1,19 @@
 # Week 8 (21 July to 26 July)
 
+- [Summary](#summary)
+- [Progress](#progress)
+    - [Execute pipelines inside another pipeline as a task (cont...)](#execute-pipelines-inside-another-pipeline-as-a-task-cont)
+    - [Graph arrows](#graph arrows)
+    - [Simple DAG examples](#simple-dag-examples)
+        - [join](#join)
+        - [junction](#junction)
+        - [fork](#fork)
+- [TODO](#todo)
+
 ## Summary
 
 This week was fully dedicated to the characterization of DAG and test of 
-orchestrators in diverse cases
+orchestrators in diverse cases.
 
 ## Progress
 
