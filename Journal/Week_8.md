@@ -95,7 +95,8 @@ coming from. Right now edges are being outputted to `graphson.json` according
   
   ## TODO
   
-  * [ ] Test junction inside a junction - other solution
-  * [ ] Test fork inside a fork
-  * [ ] Test Junction inside a fork
+  * [x] Test junction inside a junction - other solution (works but check 
+  [this](https://github.com/bionode/GSoC17/blob/master/Journal/Week_9.md#junction-inside-junction))
+  * [x] Test fork inside a fork (check [here](https://github.com/bionode/GSoC17/blob/master/Journal/Week_9.md#fork-within-fork))
+  * [x] Test Junction inside a fork
   

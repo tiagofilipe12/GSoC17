@@ -47,4 +47,16 @@ dag (first implementation).
 
 ## TODO
 
+ - [ ] Arrange a way for a task to take several inputs (lets say several _*
+ .fas_ 
+ - [ ] We need to check bionode-ncbi behavior within bionode-watermill since its 
+ outputs are being generated outside `./data`, the expected main output 
+ directory.
+ - [ ] replace d3 graph visualization with some more appropriate model.
+ - [ ] control graph using a CLI, rather than being executed by default.
+ * [ ] Future implementation of logger must be passed through a CLI as described 
+ [here](https://github.com/bionode/bionode-watermill/issues/31). For now, this
+ is a quick fix for debugging purposes. Later, when we implement a CLI we have
+  to have this into account.
+
 

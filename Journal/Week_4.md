@@ -136,15 +136,14 @@ This will render an object like this:
 
 ### Needing improvements
 
-* Pass other variables to vertices and edges information like tasks `input`, 
+* [x]Pass other variables to vertices and edges information like tasks `input`, 
 `output`, `params`.
-* There is an issue in which only one output in `params.output` is being 
+* [x]There is an issue in which only one output in `params.output` is being 
 passed to `graphsonObj.graph.vertices.outputs`. This is problematic when 
-`params.output` is a list. Same may be valid for `input` and `output` (but 
-needs testing).
-* As it is now, graph object is generated within `jsonifyGraph` and this 
-render several instances of `graphsonObj` and in fact we only need one to 
-output the graph as a visualization or even parse it to some text output.
+`params.output` is a list. Same may be valid for `input` and `output` (solved).
+* [x] As it is now, graph object is generated within `jsonifyGraph` and this 
+render several instances of `graphsonObj` and this in fact ok for real-time 
+visualization of the graph.
 
 ## Notes on manifest file
 
