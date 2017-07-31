@@ -248,3 +248,74 @@ the first fork (i.e., `fork(task1, task3)`), which in fact is wrapped around
 a `join`.
 
 ## junction inside junction
+
+Also using similar tasks to the ones above I tried to make junction work 
+inside a junction. Some workflow like this was intended in the end:
+
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/junction_junction/index.png "junction junction")
+
+So I made the following script:
+
+```javascript
+'use strict'
+
+// === WATERMILL ===
+const {
+  task,
+  join,
+  junction,
+  fork
+} = require('../../..')
+
+const task0 = task({name: 'coco'}, () => `echo "something0"`)
+
+const task1 = task({name: 'xixi'}, () => `echo "something1"`)
+
+const task2 = task({name: 'foo'}, () => `echo "something2"`)
+
+const task3 = task({name: 'bar'}, () => `echo "something3"`)
+
+const task4 = task({name: 'test'}, () => `echo "something4"`)
+
+const task5 = task({name: 'test1'}, () => `echo "something5"`)
+
+const task6 = task({name: 'test6'}, () => `echo "something6"`)
+
+const pipeline = join(task0, junction(join(task1, junction(task4, task5), task6), task2), task3)
+
+pipeline()
+```
+
+But it was rendering the following error:
+
+```
+Unhandled rejection TypeError: Cannot read property 'name' of undefined
+    at console.log.task.info.map.t (/home/tiago/bin/bionode-watermill/lib/orchestrators/junction.js:17:72)
+    at Array.map (native)
+    at Promise (/home/tiago/bin/bionode-watermill/lib/orchestrators/junction.js:17:59)
+    at Promise._execute (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/promise.js:79:10)
+    at taskToPromise (/home/tiago/bin/bionode-watermill/lib/orchestrators/junction.js:15:39)
+    at Promise.all.tasks.map.task (/home/tiago/bin/bionode-watermill/lib/orchestrators/junction.js:26:44)
+    at Array.map (native)
+    at junctionInvocator (/home/tiago/bin/bionode-watermill/lib/orchestrators/junction.js:26:32)
+    at Promise (/home/tiago/bin/bionode-watermill/lib/orchestrators/join.js:57:9)
+    at Promise._execute (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/debuggability.js:300:9)
+    at Promise._resolveFromExecutor (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/promise.js:483:18)
+    at new Promise (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/promise.js:79:10)
+    at accumulator (/home/tiago/bin/bionode-watermill/lib/orchestrators/join.js:15:58)
+    at tryCatcher (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/util.js:16:23)
+
+```
+
+However this error is solved if we comment the line 17 in `./lib/orchestrators/junction.js`
+
+```javascript
+console.log('Junction created for: ', task.info.map(t => `${t.name} (${t.uid})`))
+```
+
+In fact besides `console.log`ging this information nothing else is using `t.name` and thus pipeline properly ended as expected:
+
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/junction_junction/result.png "junction junction")
+
