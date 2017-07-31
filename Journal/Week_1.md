@@ -3,6 +3,7 @@
 - [Summary](#summary)
 - [Bionode-fastq refactoring](#bionode-fastq-refactoring)
 - [Getting familiar with bionode-watermill](#getting-familiar-with-bionode-watermill)
+    - [fixing bug with require in examples](#fixing-bug-with-require-in-examples)
 
 ## Summary
 
@@ -39,7 +40,7 @@ This solved the challenge of parsing this type of files (.fastq)
   passes to the next line.
 
 This script is still under development and in the future a CLI should be 
-added.
+added. Check the commit that tracks this changes [here](https://github.com/bionode/bionode-fastq/commit/a800d3fb533dd0b68786e084faf694a776aac952).
 
 ## Getting familiar with bionode-watermill
 
@@ -57,3 +58,10 @@ example pipeline, which is basically a pipeline that fetches some reads using
  using bowtie2 and bwa (which was important to understand the potential of 
  **fork** orchestrator). The assemblage of this pipeline allowed me to 
  understand the mechanics of tasks and orchestrators of bionode-watermill.
+ 
+ ### fixing bug with require in examples
+ 
+ Example pipelines had a bug that had to be fixed before running them, they 
+ were basically pointing to the wrong directory within bionode-watermill 
+ directory tree. You can check the pull request [here](https://github.com/bionode/bionode-watermill/pull/48/files).
+ 
