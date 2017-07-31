@@ -360,3 +360,54 @@ result:
 ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/join_join/result.png "join join")
 
 So, no major issues here!
+
+## junction inside a fork
+
+At this stage I was unsure if this would work but the truth is after fixing 
+junction `console.log`ging
+
+```javascript
+console.log('Junction created for: ', task.info.map(t => `${t.name} (${t.uid})`))
+```
+
+junction after fork in fact worked properly.
+
+expected workflow:
+
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/join_join/result.png "join join")
+
+code:
+```javascript
+'use strict'
+
+// === WATERMILL ===
+const {
+  task,
+  join,
+  junction,
+  fork
+} = require('../../..')
+
+const task0 = task({name: 'coco'}, () => `echo "something0"`)
+
+const task1 = task({name: 'xixi'}, () => `echo "something1"`)
+
+const task2 = task({name: 'foo'}, () => `echo "something2"`)
+
+const task3 = task({name: 'bar'}, () => `echo "something3"`)
+
+const task4 = task({name: 'test'}, () => `echo "something4"`)
+
+const task5 = task({name: 'test1'}, () => `echo "something5"`)
+
+const task6 = task({name: 'test6'}, () => `echo "something6"`)
+
+const pipeline = join(task0, fork(join(task1, junction(task4, task5), task6), task2), task3)
+
+pipeline()
+```
+
+result:
+
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/join_join/result.png "join join")
+
