@@ -38,6 +38,9 @@ In this week I took advantage of the acquired 'know-how' from last week, while
  
  ## Documenting two-mappers example
  
+ Pull requests: [#55](https://github.com/bionode/bionode-watermill/pull/55/files) and
+ [#56](https://github.com/bionode/bionode-watermill/pull/56/files).
+ 
  ### Tutorial
  
 But then I thought: "Ok users can now create files and write to them (with 
@@ -78,7 +81,7 @@ provided at the end of the tutorial for those that may struggle to understand
  
  - [x] Make it easier to understand which folders are being created from which 
  tasks.
- - [ ] Better explain the input/output in the tutorial (see this [issue]
+ - [x] Better explain the input/output in the tutorial (see this [issue]
  (https://github.com/bionode/bionode-watermill-tutorial/issues/2)).
  I.e. explain how glob patterns are fetching files and how can we declare the
   output.

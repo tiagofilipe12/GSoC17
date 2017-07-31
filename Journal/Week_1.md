@@ -57,7 +57,8 @@ example pipeline, which is basically a pipeline that fetches some reads using
  genome from NCBI. Then, this reads are mapped against the reference genome 
  using bowtie2 and bwa (which was important to understand the potential of 
  **fork** orchestrator). The assemblage of this pipeline allowed me to 
- understand the mechanics of tasks and orchestrators of bionode-watermill.
+ understand the mechanics of tasks and orchestrators of bionode-watermill. 
+ You can check this pull request [here](https://github.com/bionode/bionode-watermill/pull/53/files).
  
  ### fixing bug with require in examples
  
