@@ -246,3 +246,5 @@ Unhandled rejection TypeError: Cannot read property 'concat' of undefined
 So, it looks like it is unable to pass task 5 to the end of the fork within 
 the first fork (i.e., `fork(task1, task3)`), which in fact is wrapped around 
 a `join`.
+
+## junction inside junction
