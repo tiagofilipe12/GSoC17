@@ -411,3 +411,13 @@ result:
 
 ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_junction/fork_junction.png "fork junction")
 
+## fork inside junction
+
+Just does not make sense because junction intends to create several branches 
+that end in a single leaf, therefore adding something inside that ends in 
+several leaves is theoretically messy. So, this should be avoided by the user
+ and maybe we should had some check in code to avoid this
+ 
+#### TODO
+ 
+ * [ ] Add check for fork inside junction in code? 
