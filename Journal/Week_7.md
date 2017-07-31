@@ -133,3 +133,4 @@ one in `lib/constants/default-task-state.js` that is used by orchestrators to
  handle `task` state. So, in order to avoid this duplication of code the 
  instances of `defaultTask` within `lib/reducers/task.js` was replaced with 
  an import from `lib/constants/default-task-state.js`.
+ Check pull request [#67](https://github.com/bionode/bionode-watermill/pull/67/files)

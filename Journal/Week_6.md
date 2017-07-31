@@ -106,6 +106,8 @@ Until now, there were no operationString instance in default task state, thus
  `taskState` used by ` graphson`. This [commit](https://github.com/bionode/bionode-watermill/commit/f56a1abaf636ca6e4c80e4d35898e92cedef4096) 
  might help to better comprehend the progress done here.
 
+Final implementation of the `graphson` visualization can be checked in [#62](https://github.com/bionode/bionode-watermill/pull/62)
+and in [#64](https://github.com/bionode/bionode-watermill/pull/64/files) for the setting of `operationString`.
 
 ## TODO
 
