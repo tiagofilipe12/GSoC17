@@ -87,17 +87,19 @@ For now the output should look like the following example:
 
 ```
 
-So, the output is NDJSON like file, following the phylosophy of other 
+So, the output is NDJSON like file, following the philosophy of other 
 `bionode` modules.
     
+ This was part of pull request [#57](https://github.com/bionode/bionode-watermill/pull/57/files) 
+ that became deprecated later with pull request [#62](https://github.com/bionode/bionode-watermill/pull/62).
   
 ## What can be improved?
 
 - [ ] We need to check bionode-ncbi behavior within bionode-watermill since its 
 outputs are being generated outside `./data`, the expected main output 
 directory.
-- [ ] Output should include the actual files that are the input and output 
+- [x] Output should include the actual files that are the input and output 
 (resolvedInput and resolvedOutput).
-- [ ] It should be added the 'command' that is run by each task.
-- [ ] Also it should be improved the visualization of which tasks run in 
+- [x] It should be added the 'command' that is run by each task.
+- [x] Also it should be improved the visualization of which tasks run in 
 parallel or one after another. What are the relationships between tasks.
