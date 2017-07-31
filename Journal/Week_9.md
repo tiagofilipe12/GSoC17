@@ -91,8 +91,7 @@ const samtoolsView = task(
 })
 ```
  
- But in fact previously watermill was just using `props
- .input` `props.output` and `props.params`. In fact, users may do minor 
+ But in fact previously watermill was just using `props.input` `props.output` and `props.params`. In fact, users may do minor 
  tweaks into input/output patterns that will render different uids. However, 
  this is not very intuitive and may get confusing if we end up with several 
  patterns.
@@ -188,3 +187,62 @@ output patterns from `samtools`* tasks. Check the code [here](https://github.com
 Finally, workflow was properly executed as expected (check [this](https://github.com/bionode/GSoC17/tree/master/Experimental_code/Experimental_Pipelines/merge_two_mappers)).
 
 
+## fork within fork
+
+Using the above workaround for tasks with same props (where `props.name` can be 
+used to control `uids`) I tried to make the following workflow:
+
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/index.png "fork fork")
+
+Tried to make it using the following code:
+
+```javascript
+'use strict'
+
+// === WATERMILL ===
+const {
+  task,
+  join,
+  junction,
+  fork
+} = require('../../..')
+
+const task0 = task({name: 'coco'}, () => `echo "something0"`)
+
+const task1 = task({name: 'xixi'}, () => `echo "something1"`)
+
+const task2 = task({name: 'foo'}, () => `echo "something2"`)
+
+const task3 = task({name: 'bar'}, () => `echo "something3"`)
+
+const task4 = task({name: 'test'}, () => `echo "something4"`)
+
+const task5 = task({name: 'test1'}, () => `echo "something5"`)
+
+const pipeline = join(task0, fork(join(task4, fork(task1, task3)), task2), task5)
+
+pipeline()
+```
+
+However it renders:
+
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/result.png "fork fork")
+
+with the following error message
+
+```
+Unhandled rejection TypeError: Cannot read property 'concat' of undefined
+    at /home/tiago/bin/bionode-watermill/lib/ctx/index.js:19:49
+    at task.then (/home/tiago/bin/bionode-watermill/lib/orchestrators/join.js:61:38)
+    at tryCatcher (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise._settlePromiseFromHandler (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/promise.js:512:31)
+    at Promise._settlePromise (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/promise.js:569:18)
+    at Promise._fulfillPromises (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/promise.js:668:14)
+    at Promise._settlePromises (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/promise.js:694:18)
+    at Async._drainQueue (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/async.js:133:16)
+    at Async._drainQueues (/home/tiago/bin/bionode-watermill/node_modules/bluebird/js/release/async.js:143:10)
+
+```
+So, it looks like it is unable to pass task 5 to the end of the fork within 
+the first fork (i.e., `fork(task1, task3)`), which in fact is wrapped around 
+a `join`.
