@@ -47,7 +47,8 @@ const store = createStore(rootReducer, applyMiddleware(...middlewares))
 This way we can call `REDUX_LOGGER=1 node pipeline.js` and this will output 
 all redux related actions and states to the console. Also, one can use chrome
  inspector (`REDUX_LOGGER=1 node --inspect pipeline.js`) and open chrome 
- browser to have a better visualization of the output.
+ browser to have a better visualization of the output. Check the pull request
+  [here](https://github.com/bionode/bionode-watermill/pull/61/files).
  
 After this implementation, found that three errors were being outputted:
 

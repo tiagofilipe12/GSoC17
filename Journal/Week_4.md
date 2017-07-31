@@ -15,6 +15,10 @@ This week was dedicated to the improvement of workflow representation. Output
  
 ## Progress
 
+Since pull request [#57](https://github.com/bionode/bionode-watermill/pull/57/files)
+wasn't ready to merge yet, we decided to add the fix on task name logging 
+separately in a new pull request ([#58](https://github.com/bionode/bionode-watermill/pull/58)).
+
 At first, I struggled to understand the dynamics implemented in 
 bionode-watermill with [redux](https://www.npmjs.com/package/redux). A good 
 guide to start understanding how redux work is available [here](https://egghead.io/lessons/javascript-redux-the-single-immutable-state-tree).
