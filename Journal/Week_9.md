@@ -374,7 +374,7 @@ junction after fork in fact worked properly.
 
 expected workflow:
 
-![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/join_join/result.png "join join")
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_junction/index.png "fork junction")
 
 code:
 ```javascript
@@ -409,5 +409,5 @@ pipeline()
 
 result:
 
-![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/join_join/result.png "join join")
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_junction/fork_junction.png "fork junction")
 
