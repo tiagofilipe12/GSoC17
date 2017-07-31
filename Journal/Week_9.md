@@ -356,5 +356,7 @@ pipeline()
 ```
 
 result:
-![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/junction_junction/result.png "junction junction")
 
+![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/join_join/result.png "join join")
+
+So, no major issues here!
