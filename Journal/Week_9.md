@@ -186,8 +186,8 @@ output patterns from `samtools`* tasks. Check the code [here](https://github.com
 
 Finally, workflow was properly executed as expected (check [this](https://github.com/bionode/GSoC17/tree/master/Experimental_code/Experimental_Pipelines/merge_two_mappers)).
 
-
-## fork within fork
+### Testing orchestrators
+#### fork within fork
 
 Using the above workaround for tasks with same props (where `props.name` can be 
 used to control `uids`) I tried to make the following workflow:
@@ -247,7 +247,7 @@ So, it looks like it is unable to pass task 5 to the end of the fork within
 the first fork (i.e., `fork(task1, task3)`), which in fact is wrapped around 
 a `join`.
 
-## junction inside junction
+#### junction inside junction
 
 Also using similar tasks to the ones above I tried to make junction work 
 inside a junction. Some workflow like this was intended in the end:
@@ -319,7 +319,7 @@ In fact besides `console.log`ging this information nothing else is using `t.name
 
 ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/junction_junction/result.png "junction junction")
 
-## join inside join
+#### join inside join
 
 join inside join gave no problems being robust as expected. join inside join 
 is in fact just join, so the pipeline was maintained as a simple join.
@@ -361,7 +361,7 @@ result:
 
 So, no major issues here!
 
-## junction inside a fork
+#### junction inside a fork
 
 At this stage I was unsure if this would work but the truth is after fixing 
 junction `console.log`ging
@@ -411,13 +411,53 @@ result:
 
 ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_junction/fork_junction.png "fork junction")
 
-## fork inside junction
+#### fork inside junction
 
 Just does not make sense because junction intends to create several branches 
 that end in a single leaf, therefore adding something inside that ends in 
 several leaves is theoretically messy. So, this should be avoided by the user
  and maybe we should had some check in code to avoid this
  
-#### TODO
+ ### Consistency of junction and fork
+ 
+ Until now, all orchestrators have different object structures which was 
+ causing the issue with logging (shown [here](https://github.com/bionode/GSoC17/blob/master/Journal/Week_9.md#junction-inside-a-fork)).
+ 
+ First of all, I added to default task state the `type` because although 
+ `task` is not an orchestrator tasks have a structure similar to `join`, 
+ `junction` and `fork`. See this [commit](https://github.com/bionode/bionode-watermill/commit/4ecc636bf28c95733c54444fa3b0f0b77e8cca5c).
+
+Moreover, added `name` to junction and join as in fork for consistency across 
+orchestrators. Also, orchestrators return an array of objects in which each 
+object is a `task`. However, `junction` and `fork` were retrieving a function
+ without info rather than an array of tasks as join does:
+ 
+ [locate in code!](https://github.com/bionode/bionode-watermill/blob/6cc33006e9675352caba5f1fe6849746998bfa56/lib/orchestrators/join.js#L89)
+ ```javascript
+joinInvocator.info = tasks.map(task => task.info)
+```
+
+So I added similar structure to junction so it can be properly logged:
+
+[commit](https://github.com/bionode/bionode-watermill/commit/f10a0de286c42677969f40cd2b2864293e41a89a)
+```javascript
+junctionInvocator.info = tasks.map(task => task.info)
+```
+ 
+If a junction is found within a junction now 
+it will retrieve an array of tasks rather than the junction itself, which 
+will render `undefined` for `task.info`. 
+
+**Notes**
+
+* Same has to be assured for `fork`, however fork needs more re-working before 
+doing the same.... (still in progress...).
+* Also, we have noticed something interesting for fork. It can properly 
+re-use tasks without the need of the workaround previously documented in this
+ README. So maybe fork can give hints on how to do this without making much 
+ changes in the validation of uids in between runs.
+
+ 
+## TODO
  
  * [ ] Add check for fork inside junction in code? 
