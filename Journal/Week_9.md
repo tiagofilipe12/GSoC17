@@ -444,7 +444,7 @@ So I added similar structure to junction so it can be properly logged:
 junctionInvocator.info = tasks.map(task => task.info)
 ```
  
-If a junction is found within a junction now 
+If a `junction` is found within a junction now 
 it will retrieve an array of tasks rather than the junction itself, which 
 will render `undefined` for `task.info`. 
 
