@@ -1,5 +1,16 @@
 # Week 9 (27 July to 2 August)
 
+- [Summary](#summary)
+- [Progress](#progress)
+    - [How to merge results from different pipeline branches?](#how-to-merge-results-from-different-pipeline-branches)
+    - [Testing orchestrators](#testing-orchestrators)
+        - [fork within fork](#fork-within-fork)
+        - [junction inside junction](#junction-inside-junction)
+        - [join inside join](#join-inside-join)
+        - [junction inside a fork](#junction-inside-a-fork)
+        - [fork inside junction](#fork-inside-junction)
+    - [Consistency of junction and fork](#consistency-of-junction-and-fork)
+
 ## Summary
 
 ## Progress
@@ -437,7 +448,7 @@ object is a `task`. However, `junction` and `fork` were retrieving a function
 joinInvocator.info = tasks.map(task => task.info)
 ```
 
-So I added similar structure to junction so it can be properly logged:
+So I added similar structure to `junction` so it can be properly logged:
 
 [commit](https://github.com/bionode/bionode-watermill/commit/f10a0de286c42677969f40cd2b2864293e41a89a)
 ```javascript
@@ -448,16 +459,37 @@ If a `junction` is found within a junction now
 it will retrieve an array of tasks rather than the junction itself, which 
 will render `undefined` for `task.info`. 
 
+For `fork` a similar structure was built (check code [here](https://github.com/bionode/bionode-watermill/commit/31d7cc16bcaf81c73af9d60881cdbdb19ce622ff)).
+However, code it is still sketchy for fork handling within `join.js` and I am
+ still testing ways to make `fork` work within another `fork`.
+
+
 **Notes**
 
-* Same has to be assured for `fork`, however fork needs more re-working before 
-doing the same.... (still in progress...).
 * Also, we have noticed something interesting for fork. It can properly 
 re-use tasks without the need of the workaround previously documented in this
  README. So maybe fork can give hints on how to do this without making much 
  changes in the validation of uids in between runs.
+ 
+ This occurs because for each task after a fork it generates a new uid:
+ 
+ ```javascript
+ const restTasks = tasks.slice(i + 1)
+              // console.log(restTasks[0].info.uid)
+ const newRestTasks = restTasks.map(
+   t => createTask(dispatch)(
+     t.info.props, t.info.operationCreator, hash(t.info.uid + j)
+     )
+   )
+```
 
- 
-## TODO
- 
- * [ ] Add check for fork inside junction in code? 
+It basically adds a number that changes in each cycle (for each task within a
+ `fork`, i.e., for each `forkee`) and appends it to previous `uid` of each 
+ task within `restTasks`.
+
+And then it `concat`s forkee (task within the fork) with the other tasks 
+after the fork 
+
+```javascript
+const lineage = [forkee].concat(newRestTasks)
+```
