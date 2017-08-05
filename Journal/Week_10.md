@@ -35,7 +35,7 @@ const pipeline = join(
 Here you can see that this pipeline has two forks, one inside the other. This
  pipeline should render a pipeline equal to the one described in last week:
  
- ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/index.png "fork fork")
+ ![test](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/index.png)
 
 Here I will use `outer fork` to refer to the first fork and `inner fork` for 
 the second fork that is inside the first fork.
@@ -129,7 +129,7 @@ const pipeline = join(
 )
 ```
 
- ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_solution.png "fork fork")
+ ![test](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_solution.png)
 
 
 going even further:
@@ -151,4 +151,4 @@ const pipeline = join(
 )
 ```
 
- ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_fork_example.png "fork fork")
+ ![test](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_fork_example.png)
