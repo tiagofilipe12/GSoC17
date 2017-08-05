@@ -129,7 +129,7 @@ const pipeline = join(
 )
 ```
 
- ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/index.png "fork fork")
+ ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_solution.png "fork fork")
 
 
 going even further:
@@ -151,4 +151,4 @@ const pipeline = join(
 )
 ```
 
- ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/index.png "fork fork")
+ ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/fork_fork_fork_example.png "fork fork")
