@@ -106,3 +106,49 @@ duplicated adn
 a new `lineage` is added to the workflow, which in fact sort of duplicates 
 the pipeline from now on [code](https://github.com/bionode/bionode-watermill/pull/70/files#diff-60c3fb460a0980c2b661e199742c79ceR42).
 
+**to be continued....**
+
+(still under construction)
+
+Results:
+
+```javascript
+const pipeline = join(
+  task0,
+  fork(
+    join(
+      task4,
+      fork(
+        task1,
+        task3
+      )
+    ),
+    task2
+  ),
+  task5
+)
+```
+
+ ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/index.png "fork fork")
+
+
+going even further:
+
+```javascript
+const pipeline = join(
+  task0,
+  fork(
+    join(
+      task4,
+      fork(
+        task1,
+        fork(task3,task6)
+      )
+    ),
+    task2
+  ),
+  task5
+)
+```
+
+ ![alt text](https://github.com/bionode/GSoC17/blob/master/Experimental_code/Experimental_Pipelines/fork_fork/index.png "fork fork")
